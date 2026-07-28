@@ -1,0 +1,64 @@
+---
+---
+
+<section id="about">
+  <div class="container about-grid">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2 class="section-heading">Recently graduated, already comfortable with messy, million-row data.</h2>
+    </div>
+    <div class="about-body">
+      <p>
+        I'm an MSc Applied AI and Data Analytics graduate from the University of
+        Bradford, with a strong passion for data analysis and problem-solving.
+        My flagship project compared eight machine learning algorithms —
+        including LightGBM — to predict equipment failure for a UK critical
+        power infrastructure company, working across ten years of operational
+        data and 3.9M+ records, without requiring any new sensor
+        infrastructure.
+      </p>
+      <p>
+        Alongside the modelling work, I have hands-on experience building
+        interactive BI dashboards in Power BI, covering HR analytics and
+        customer support operations — cleaning data, modelling it properly,
+        and designing dashboards that surface the trend behind the numbers
+        rather than just the numbers themselves.
+      </p>
+      <p>
+        I work across SQL, Excel, Power BI, Python, and Tableau, and I'm
+        motivated by a simple idea: data tells a story, and my job is to find
+        it and make it legible to the people who need to act on it.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  .about-grid h2 {
+    max-width: 360px;
+  }
+
+  .about-body p {
+    color: var(--ink-secondary);
+    margin-bottom: 20px;
+    font-size: 1.02rem;
+  }
+
+  .about-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>

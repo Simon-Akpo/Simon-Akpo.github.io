@@ -1,0 +1,248 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ImageSlot from '../../components/ImageSlot.astro';
+import StatTile from '../../components/StatTile.astro';
+
+const gallery = [
+  {
+    src: '/images/projects/predictive-maintenance/01-data-pipeline.png',
+    alt: 'Placeholder for data pipeline and feature engineering overview diagram',
+    caption: 'Data pipeline & feature engineering overview',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/02-model-comparison.png',
+    alt: 'Placeholder for chart comparing performance across all eight algorithms',
+    caption: 'Model performance comparison across all 8 algorithms',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/03-feature-importance.png',
+    alt: 'Placeholder for LightGBM feature importance chart',
+    caption: 'LightGBM feature importance',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/04-confusion-matrix.png',
+    alt: 'Placeholder for confusion matrix of the best performing model',
+    caption: 'Confusion matrix — best performing model',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/05-roc-curves.png',
+    alt: 'Placeholder for ROC curve comparison across models',
+    caption: 'ROC curve comparison',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/06-precision-recall.png',
+    alt: 'Placeholder for precision-recall curve chart',
+    caption: 'Precision–recall curve',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/07-failure-timeline.png',
+    alt: 'Placeholder for predicted vs actual failure timeline chart',
+    caption: 'Predicted vs. actual failure timeline',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/08-shap-summary.png',
+    alt: 'Placeholder for SHAP summary plot showing model interpretability',
+    caption: 'SHAP summary plot — model interpretability',
+  },
+];
+
+const steps = [
+  {
+    title: 'The problem',
+    body: "A UK critical power infrastructure operator needed to anticipate equipment failure before it happened, but installing new sensor hardware across the estate wasn't a realistic option in the short term. The brief was to find out whether failure could be predicted from data the company already collected.",
+  },
+  {
+    title: 'The data',
+    body: 'Ten years of operational history — 3.9M+ records — covering equipment behaviour over time. The bulk of the work was cleaning, structuring, and engineering features from this history so it was usable for modelling, without any additional instrumentation.',
+  },
+  {
+    title: 'The approach',
+    body: 'Eight machine learning algorithms were built and benchmarked against each other, including LightGBM, to compare gradient-boosted, tree-based, and baseline approaches under consistent evaluation conditions.',
+  },
+  {
+    title: 'Evaluation',
+    body: 'Models were assessed on their ability to correctly flag at-risk equipment ahead of failure — not just raw accuracy — since false negatives (missed failures) and false positives (unnecessary maintenance call-outs) carry very different real-world costs.',
+  },
+  {
+    title: 'The outcome',
+    body: 'A working comparison of eight modelling approaches on the same infrastructure dataset, giving a clear, evidence-based answer on which algorithm family is best suited to failure prediction for this operator — using existing data, with no new sensor investment required.',
+  },
+];
+---
+
+<Layout
+  title="Predictive Maintenance for Critical Power Infrastructure — Simon Akporowhe"
+  description="MSc dissertation case study: 8 machine learning algorithms, including LightGBM, compared to predict equipment failure across 10 years and 3.9M+ records of UK critical power infrastructure data."
+  path="/projects/predictive-maintenance/"
+>
+  <article class="case-study">
+    <header class="case-header">
+      <div class="container">
+        <a href="/#projects" class="back-link">← Back to projects</a>
+        <span class="tag project-kicker">Flagship — MSc Dissertation</span>
+        <h1>Predictive Maintenance for Critical Power Infrastructure</h1>
+        <p class="case-sub">
+          Comparing eight machine learning algorithms to predict equipment
+          failure from ten years of operational data — no new sensors
+          required.
+        </p>
+
+        <div class="stat-row">
+          <StatTile value="8" label="ML algorithms compared" />
+          <StatTile value="3.9M+" label="Operational records" tone="good" />
+          <StatTile value="10 yrs" label="Of historical data" />
+          <StatTile value="0" label="New sensors required" tone="good" />
+        </div>
+      </div>
+    </header>
+
+    <section class="case-section">
+      <div class="container">
+        <h2 class="section-heading">Methodology</h2>
+        <ol class="steps">
+          {steps.map((step, i) => (
+            <li class="step">
+              <span class="step-index">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2 class="section-heading">Gallery</h2>
+        <p class="section-intro">
+          Charts and visuals from the dissertation — model comparisons,
+          feature importance, and evaluation diagnostics.
+        </p>
+        <div class="gallery-grid">
+          {gallery.map((item) => (
+            <ImageSlot src={item.src} alt={item.alt} caption={item.caption} ratio="4/3" />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-cta">
+      <div class="container">
+        <h2 class="section-heading">Interested in the details?</h2>
+        <p class="section-intro">
+          I'm happy to walk through the modelling choices, evaluation metrics,
+          or the full dissertation on request.
+        </p>
+        <a class="btn btn-primary" href="/#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="/#projects">See other projects</a>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .case-header {
+    padding: 48px 0 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .back-link:hover {
+    color: var(--ink);
+  }
+
+  .project-kicker {
+    color: var(--accent);
+    border-color: rgba(57, 135, 229, 0.35);
+    margin-bottom: 18px;
+  }
+
+  .case-header h1 {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    max-width: 760px;
+    margin-bottom: 16px;
+  }
+
+  .case-sub {
+    color: var(--ink-secondary);
+    font-size: 1.1rem;
+    max-width: 620px;
+    margin-bottom: 40px;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .case-section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .case-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 760px;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+  }
+
+  .step-index {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  .step h3 {
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    color: var(--ink-secondary);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .case-cta .btn {
+    margin-right: 12px;
+  }
+
+  @media (max-width: 640px) {
+    .stat-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .step {
+      grid-template-columns: 40px 1fr;
+    }
+  }
+</style>

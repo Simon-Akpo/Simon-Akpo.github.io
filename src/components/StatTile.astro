@@ -1,0 +1,48 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  tone?: 'accent' | 'good' | 'warn';
+}
+
+const { value, label, tone = 'accent' } = Astro.props;
+---
+
+<div class:list={['stat-tile', `tone-${tone}`]}>
+  <span class="stat-value">{value}</span>
+  <span class="stat-label">{label}</span>
+</div>
+
+<style>
+  .stat-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+  }
+
+  .stat-tile.tone-good {
+    border-left-color: var(--good);
+  }
+
+  .stat-tile.tone-warn {
+    border-left-color: var(--warn);
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--ink-secondary);
+    line-height: 1.4;
+  }
+</style>

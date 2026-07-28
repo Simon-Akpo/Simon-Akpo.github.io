@@ -1,0 +1,87 @@
+---
+const contacts = [
+  {
+    label: 'Email',
+    value: 'simonakporowhe40@gmail.com',
+    href: 'mailto:simonakporowhe40@gmail.com',
+  },
+  {
+    label: 'LinkedIn',
+    value: 'linkedin.com/in/simon-akporowhe-15b086152',
+    href: 'https://linkedin.com/in/simon-akporowhe-15b086152',
+  },
+  {
+    label: 'GitHub',
+    value: 'github.com/simaco-do',
+    href: 'https://github.com/simaco-do',
+  },
+];
+---
+
+<section id="contact">
+  <div class="container contact-inner">
+    <p class="eyebrow">Contact</p>
+    <h2 class="section-heading">Let's talk about your data.</h2>
+    <p class="section-intro">
+      Open to graduate roles and freelance work in data analysis, BI, and
+      applied machine learning. The fastest way to reach me is email.
+    </p>
+
+    <div class="contact-grid">
+      {contacts.map((contact) => (
+        <a
+          class="card contact-card"
+          href={contact.href}
+          target={contact.href.startsWith('http') ? '_blank' : undefined}
+          rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          <span class="contact-label">{contact.label}</span>
+          <span class="contact-value">{contact.value}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .contact-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .contact-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+
+  .contact-value {
+    font-size: 0.98rem;
+    color: var(--ink-secondary);
+    word-break: break-word;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

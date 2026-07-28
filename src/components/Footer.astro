@@ -1,0 +1,44 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>&copy; {year} Simon Akporowhe. Built with Astro, deployed on GitHub Pages.</p>
+    <div class="footer-links">
+      <a href="https://github.com/simaco-do" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/simon-akporowhe-15b086152" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:simonakporowhe40@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 32px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-links a {
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .footer-links a:hover {
+    color: var(--ink);
+  }
+</style>

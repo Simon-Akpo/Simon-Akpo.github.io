@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d0d0d"/>
+  <circle cx="140" cy="90" r="220" fill="#3987e5" opacity="0.12"/>
+  <circle cx="1080" cy="560" r="220" fill="#1baf7a" opacity="0.1"/>
+  <text x="90" y="300" font-family="-apple-system, Segoe UI, sans-serif" font-size="56" font-weight="700" fill="#ffffff">Simon Akporowhe</text>
+  <text x="90" y="360" font-family="-apple-system, Segoe UI, sans-serif" font-size="30" fill="#c3c2b7">Data Analyst &amp; Applied AI Practitioner</text>
+  <text x="90" y="420" font-family="ui-monospace, Menlo, monospace" font-size="22" fill="#3987e5">MSc Applied AI &amp; Data Analytics — University of Bradford</text>
+</svg>

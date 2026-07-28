@@ -1,0 +1,69 @@
+---
+const groups = [
+  {
+    title: 'Machine Learning & Modelling',
+    skills: ['Python', 'LightGBM', 'XGBoost', 'scikit-learn', 'Feature Engineering', 'Pandas'],
+  },
+  {
+    title: 'BI & Visualization',
+    skills: ['Power BI', 'DAX', 'Power Query', 'Tableau', 'Dashboard Design', 'Data Modeling'],
+  },
+  {
+    title: 'Data & Analysis',
+    skills: ['SQL', 'Excel', 'Data Cleaning', 'Statistical Analysis', 'Storytelling with Data'],
+  },
+];
+---
+
+<section id="skills">
+  <div class="container">
+    <p class="eyebrow">Skills</p>
+    <h2 class="section-heading">Tools I reach for</h2>
+    <p class="section-intro">
+      A mix of applied machine learning and BI craft — enough of each to take a
+      dataset from raw export to a model or a dashboard someone actually uses.
+    </p>
+
+    <div class="skills-grid">
+      {groups.map((group) => (
+        <div class="card skill-card">
+          <h3>{group.title}</h3>
+          <ul class="skill-tags">
+            {group.skills.map((skill) => (
+              <li class="tag">{skill}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    padding: 28px;
+  }
+
+  .skill-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

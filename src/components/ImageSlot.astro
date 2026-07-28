@@ -1,0 +1,89 @@
+---
+// Renders the real image once it exists at `src` inside /public.
+// Until then (or if it 404s) it falls back to a styled placeholder
+// showing exactly where to drop the file — no markup changes needed later.
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  ratio?: string;
+}
+
+const { src, alt, caption, ratio = '16/10' } = Astro.props;
+---
+
+<figure class="image-slot-wrap">
+  <div class="image-slot" style={`aspect-ratio:${ratio}`}>
+    <div class="image-slot-fallback">
+      <span class="image-slot-icon" aria-hidden="true">◱</span>
+      <span class="image-slot-label">Add screenshot</span>
+      <span class="image-slot-hint">public{src}</span>
+    </div>
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      onerror="this.style.display='none'"
+    />
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .image-slot-wrap {
+    margin: 0;
+  }
+
+  .image-slot {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface-raised);
+  }
+
+  .image-slot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-slot-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px;
+    text-align: center;
+    color: var(--ink-muted);
+  }
+
+  .image-slot-icon {
+    font-size: 1.6rem;
+    color: var(--ink-secondary);
+  }
+
+  .image-slot-label {
+    font-size: 0.85rem;
+    color: var(--ink-secondary);
+  }
+
+  .image-slot-hint {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    word-break: break-all;
+  }
+
+  figcaption {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    text-align: center;
+  }
+</style>

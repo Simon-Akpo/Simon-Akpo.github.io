@@ -1,0 +1,208 @@
+---
+import ImageSlot from './ImageSlot.astro';
+import StatTile from './StatTile.astro';
+---
+
+<section id="projects">
+  <div class="container">
+    <p class="eyebrow">Projects</p>
+    <h2 class="section-heading">Selected work</h2>
+    <p class="section-intro">
+      A predictive maintenance dissertation as the flagship piece, plus two
+      Power BI dashboards built to answer specific operational questions.
+    </p>
+
+    <!-- Flagship: Predictive Maintenance -->
+    <article class="card project-card project-featured">
+      <div class="project-copy">
+        <span class="tag project-kicker">Flagship — MSc Dissertation</span>
+        <h3>Predictive Maintenance for Critical Power Infrastructure</h3>
+        <p>
+          Built and compared eight machine learning algorithms — including
+          LightGBM — to predict equipment failure for a UK critical power
+          infrastructure company, using ten years of operational history
+          (3.9M+ records) with no new sensor hardware required. The goal:
+          give maintenance teams enough lead time to act before failure, using
+          data they already had.
+        </p>
+
+        <div class="tag-row">
+          {['Python', 'LightGBM', 'XGBoost', 'scikit-learn', 'Feature Engineering', 'Time-Series Data'].map((t) => (
+            <span class="tag">{t}</span>
+          ))}
+        </div>
+
+        <div class="stat-row">
+          <StatTile value="8" label="ML algorithms compared" />
+          <StatTile value="3.9M+" label="Operational records" tone="good" />
+          <StatTile value="10 yrs" label="Of historical data" />
+          <StatTile value="0" label="New sensors required" tone="good" />
+        </div>
+
+        <a class="btn btn-primary" href="/projects/predictive-maintenance/">
+          Read the full case study →
+        </a>
+      </div>
+
+      <div class="project-visual">
+        <ImageSlot
+          src="/images/projects/predictive-maintenance/hero-chart.png"
+          alt="Placeholder for predictive maintenance model performance chart"
+          ratio="4/3"
+        />
+      </div>
+    </article>
+
+    <!-- Employee Attrition -->
+    <article class="card project-card">
+      <div class="project-copy">
+        <h3>Employee Attrition Analysis Dashboard</h3>
+        <p>
+          An interactive Power BI dashboard analyzing workforce attrition
+          across 1,470 employees, built to help HR identify which segments of
+          the workforce are actually at risk — and why — rather than reacting
+          to attrition after it happens.
+        </p>
+
+        <div class="tag-row">
+          {['Power BI Desktop', 'DAX', 'Data Modeling', 'Dashboard Design'].map((t) => (
+            <span class="tag">{t}</span>
+          ))}
+        </div>
+
+        <div class="stat-row stat-row-4">
+          <StatTile value="1,470" label="Employees analyzed" />
+          <StatTile value="16.1%" label="Overall attrition rate" tone="warn" />
+          <StatTile value="~3x" label="Overtime workers' relative attrition" tone="warn" />
+          <StatTile value="Early tenure" label="Segment with highest attrition risk" tone="warn" />
+        </div>
+      </div>
+
+      <div class="project-visual project-visual-pair">
+        <ImageSlot
+          src="/images/projects/employee-attrition/overview.png"
+          alt="Placeholder for attrition dashboard overview page"
+          caption="Overview page"
+          ratio="16/10"
+        />
+        <ImageSlot
+          src="/images/projects/employee-attrition/deep-dive.png"
+          alt="Placeholder for attrition dashboard deep dive page"
+          caption="Deep dive page"
+          ratio="16/10"
+        />
+      </div>
+    </article>
+
+    <!-- Customer Support Ticket Analytics -->
+    <article class="card project-card">
+      <div class="project-copy">
+        <h3>Customer Support Ticket Analytics Dashboard</h3>
+        <p>
+          A Power BI dashboard covering 8,469 support tickets, built to
+          surface where response and resolution performance was breaking
+          down across the support operation — from first response speed to
+          overall solve rate.
+        </p>
+
+        <div class="tag-row">
+          {['Power BI Desktop', 'DAX', 'Power Query', 'Dashboard Design'].map((t) => (
+            <span class="tag">{t}</span>
+          ))}
+        </div>
+
+        <div class="stat-row stat-row-4">
+          <StatTile value="8,469" label="Tickets analyzed" />
+          <StatTile value="7h 45m" label="Average handling time" />
+          <StatTile value="66.7%" label="First response rate" tone="good" />
+          <StatTile value="32.7%" label="Solved rate" tone="warn" />
+        </div>
+      </div>
+
+      <div class="project-visual">
+        <ImageSlot
+          src="/images/projects/customer-support/dashboard.png"
+          alt="Placeholder for customer support ticket analytics dashboard"
+          ratio="16/10"
+        />
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .project-card {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    padding: 40px;
+    margin-bottom: 28px;
+    align-items: center;
+  }
+
+  .project-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .project-featured {
+    border-color: var(--border-strong);
+    background: linear-gradient(160deg, var(--surface) 0%, var(--surface-raised) 100%);
+  }
+
+  .project-kicker {
+    color: var(--accent);
+    border-color: rgba(57, 135, 229, 0.35);
+    margin-bottom: 16px;
+  }
+
+  .project-copy h3 {
+    font-size: 1.5rem;
+    margin-bottom: 14px;
+  }
+
+  .project-copy > p {
+    color: var(--ink-secondary);
+    margin-bottom: 22px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .project-visual-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 980px) {
+    .project-card {
+      grid-template-columns: 1fr;
+      padding: 28px;
+    }
+
+    .project-visual {
+      order: -1;
+    }
+
+    .stat-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 540px) {
+    .project-visual-pair {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
