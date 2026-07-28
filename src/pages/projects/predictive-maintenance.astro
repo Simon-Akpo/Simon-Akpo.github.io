@@ -69,18 +69,18 @@ const steps = [
   },
   {
     title: 'Evaluation',
-    body: 'Models were assessed on their ability to correctly flag at-risk equipment ahead of failure — not just raw accuracy — since false negatives (missed failures) and false positives (unnecessary maintenance call-outs) carry very different real-world costs.',
+    body: 'Models were assessed on their ability to correctly flag at-risk equipment ahead of failure — not just raw accuracy — since false negatives (missed failures) and false positives (unnecessary maintenance call-outs) carry very different real-world costs. LightGBM came out on top: 0.86 test F1 and 0.97 ROC AUC, correctly flagging 85.8% of equipment that went on to break down. Random Forest scored competitively on paper but was excluded — it had memorised the training set (99.7% training accuracy), the clearest overfitting signature of any of the eight models.',
   },
   {
     title: 'The outcome',
-    body: 'A working comparison of eight modelling approaches on the same infrastructure dataset, giving a clear, evidence-based answer on which algorithm family is best suited to failure prediction for this operator — using existing data, with no new sensor investment required.',
+    body: "LightGBM was the clear choice for this operator: strong recall, a comfortably low overfitting gap, and 91.2% test accuracy — good enough to pilot as a maintenance-prioritisation tool. It also surfaced a directly actionable finding: at-risk equipment had gone a median of ~5 years without a maintenance touchpoint, versus ~1.3 years for healthy equipment, meaning the strongest predictor of failure is something the operator can monitor and act on today, using data it already collects.",
   },
 ];
 ---
 
 <Layout
   title="Predictive Maintenance for Critical Power Infrastructure — Simon Akporowhe"
-  description="MSc dissertation case study: 8 machine learning algorithms, including LightGBM, compared to predict equipment failure across 10 years and 3.9M+ records of UK critical power infrastructure data."
+  description="MSc dissertation case study: 8 machine learning algorithms, including LightGBM, compared to predict equipment failure across 10 years and 3.9M+ records of UK critical power infrastructure data. LightGBM achieved 91.2% test accuracy and 0.97 ROC AUC."
   path="/projects/predictive-maintenance/"
 >
   <article class="case-study">
@@ -118,6 +118,25 @@ const steps = [
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+
+    <section class="case-section">
+      <div class="container">
+        <h2 class="section-heading">Results</h2>
+        <p class="section-intro">
+          LightGBM won cleanly on cross-validated F1, test F1, and ROC AUC,
+          with a comfortably low overfitting gap. Random Forest looked
+          competitive on paper but was excluded: it hit 99.7% training
+          accuracy — a clear sign it had memorised the training set rather
+          than learned a generalisable pattern.
+        </p>
+        <div class="stat-row">
+          <StatTile value="91.2%" label="Test accuracy (LightGBM)" tone="good" />
+          <StatTile value="0.86" label="Test F1 score" tone="good" />
+          <StatTile value="0.97" label="Test ROC AUC" tone="good" />
+          <StatTile value="85.8%" label="Recall — breakdowns correctly flagged" />
+        </div>
       </div>
     </section>
 

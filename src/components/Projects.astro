@@ -39,6 +39,10 @@ import StatTile from './StatTile.astro';
           <StatTile value="0" label="New sensors required" tone="good" />
         </div>
 
+        <p class="result-line">
+          <strong>Result:</strong> LightGBM hit 91.2% test accuracy and 0.97 ROC AUC — the best of all 8 models compared.
+        </p>
+
         <a class="btn btn-primary" href="/projects/predictive-maintenance/">
           Read the full case study →
         </a>
@@ -178,6 +182,16 @@ import StatTile from './StatTile.astro';
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
     margin-bottom: 28px;
+  }
+
+  .result-line {
+    font-size: 0.92rem;
+    color: var(--ink-secondary);
+    margin-bottom: 24px;
+  }
+
+  .result-line strong {
+    color: var(--good);
   }
 
   .project-visual-pair {
