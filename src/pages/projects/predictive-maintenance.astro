@@ -6,43 +6,51 @@ import StatTile from '../../components/StatTile.astro';
 const gallery = [
   {
     src: '/images/projects/predictive-maintenance/01-data-pipeline.png',
-    alt: 'Placeholder for data pipeline and feature engineering overview diagram',
+    alt: 'Data pipeline and feature engineering overview diagram',
     caption: 'Data pipeline & feature engineering overview',
+    ratio: '3/4',
   },
   {
     src: '/images/projects/predictive-maintenance/02-model-comparison.png',
-    alt: 'Placeholder for chart comparing performance across all eight algorithms',
-    caption: 'Model performance comparison across all 8 algorithms',
+    alt: 'Chart ranking all eight algorithms by F1 score and ROC AUC',
+    caption: 'Model ranking across all 8 algorithms — F1 and ROC AUC',
+    ratio: '5/2',
   },
   {
-    src: '/images/projects/predictive-maintenance/03-feature-importance.png',
-    alt: 'Placeholder for LightGBM feature importance chart',
-    caption: 'LightGBM feature importance',
+    src: '/images/projects/predictive-maintenance/03-overfitting-gap.png',
+    alt: 'Chart comparing train/test overfitting gap across models',
+    caption: 'Overfitting gap — why Random Forest was excluded despite a competitive F1',
+    ratio: '8/5',
   },
   {
-    src: '/images/projects/predictive-maintenance/04-confusion-matrix.png',
-    alt: 'Placeholder for confusion matrix of the best performing model',
-    caption: 'Confusion matrix — best performing model',
-  },
-  {
-    src: '/images/projects/predictive-maintenance/05-roc-curves.png',
-    alt: 'Placeholder for ROC curve comparison across models',
+    src: '/images/projects/predictive-maintenance/04-roc-curves.png',
+    alt: 'ROC curve comparison across all models',
     caption: 'ROC curve comparison',
+    ratio: '1/1',
   },
   {
-    src: '/images/projects/predictive-maintenance/06-precision-recall.png',
-    alt: 'Placeholder for precision-recall curve chart',
-    caption: 'Precision–recall curve',
+    src: '/images/projects/predictive-maintenance/05-confusion-matrix.png',
+    alt: 'Confusion matrix for the best performing model, LightGBM',
+    caption: 'Confusion matrix — LightGBM (best model)',
+    ratio: '2/1',
   },
   {
-    src: '/images/projects/predictive-maintenance/07-failure-timeline.png',
-    alt: 'Placeholder for predicted vs actual failure timeline chart',
-    caption: 'Predicted vs. actual failure timeline',
+    src: '/images/projects/predictive-maintenance/06-feature-importance.png',
+    alt: 'LightGBM feature importance chart',
+    caption: 'LightGBM feature importance',
+    ratio: '4/3',
   },
   {
-    src: '/images/projects/predictive-maintenance/08-shap-summary.png',
-    alt: 'Placeholder for SHAP summary plot showing model interpretability',
-    caption: 'SHAP summary plot — model interpretability',
+    src: '/images/projects/predictive-maintenance/07-cross-model-importance.png',
+    alt: 'Heatmap of feature importance across all eight models',
+    caption: 'Feature importance across all 8 models (cross-model heatmap)',
+    ratio: '1/1',
+  },
+  {
+    src: '/images/projects/predictive-maintenance/08-failure-rate-by-age.png',
+    alt: 'Chart showing equipment failure rate rising with age',
+    caption: 'Failure rate by equipment age — a wear-out pattern, not classic bathtub-shaped',
+    ratio: '16/9',
   },
 ];
 
@@ -122,7 +130,7 @@ const steps = [
         </p>
         <div class="gallery-grid">
           {gallery.map((item) => (
-            <ImageSlot src={item.src} alt={item.alt} caption={item.caption} ratio="4/3" />
+            <ImageSlot src={item.src} alt={item.alt} caption={item.caption} ratio={item.ratio} fit="contain" />
           ))}
         </div>
       </div>
