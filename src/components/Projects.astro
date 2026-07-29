@@ -1,6 +1,98 @@
 ---
 import ImageSlot from './ImageSlot.astro';
 import StatTile from './StatTile.astro';
+
+// Add future projects here — each renders as its own card and is
+// automatically picked up by the filter pills above the grid (built from
+// the union of every project's `tags`). Nothing else needs to change.
+const projects = [
+  {
+    id: 'predictive-maintenance',
+    featured: true,
+    kicker: 'Flagship — MSc Dissertation',
+    title: 'Predictive Maintenance for Critical Power Infrastructure',
+    description:
+      'Built and compared eight machine learning algorithms — including LightGBM — to predict equipment failure for a UK critical power infrastructure company, using ten years of operational history (3.9M+ records) with no new sensor hardware required. The goal: give maintenance teams enough lead time to act before failure, using data they already had.',
+    tags: ['Python', 'LightGBM', 'XGBoost', 'scikit-learn', 'Feature Engineering', 'Time-Series Data'],
+    stats: [
+      { value: '8', label: 'ML algorithms compared' },
+      { value: '3.9M+', label: 'Operational records', tone: 'good' },
+      { value: '10 yrs', label: 'Of historical data' },
+      { value: '0', label: 'New sensors required', tone: 'good' },
+    ],
+    resultLine: 'LightGBM hit 91.2% test accuracy and 0.97 ROC AUC — the best of all 8 models compared.',
+    caseStudyHref: '/projects/predictive-maintenance/',
+    visual: {
+      layout: 'single',
+      images: [
+        {
+          src: '/images/projects/predictive-maintenance/hero-chart.png',
+          alt: 'LightGBM feature importance chart from the predictive maintenance dissertation',
+          ratio: '4/3',
+          fit: 'contain',
+        },
+      ],
+    },
+  },
+  {
+    id: 'employee-attrition',
+    title: 'Employee Attrition Analysis Dashboard',
+    description:
+      'An interactive Power BI dashboard analyzing workforce attrition across 1,470 employees, built to help HR identify which segments of the workforce are actually at risk — and why — rather than reacting to attrition after it happens.',
+    tags: ['Power BI Desktop', 'DAX', 'Data Modeling', 'Dashboard Design'],
+    stats: [
+      { value: '1,470', label: 'Employees analyzed' },
+      { value: '16.1%', label: 'Overall attrition rate', tone: 'warn' },
+      { value: '~3x', label: "Overtime workers' relative attrition", tone: 'warn' },
+      { value: 'Early tenure', label: 'Segment with highest attrition risk', tone: 'warn' },
+    ],
+    visual: {
+      layout: 'pair',
+      images: [
+        {
+          src: '/images/projects/employee-attrition/overview.png',
+          alt: 'Employee attrition Power BI dashboard, overview page — total employees, attrition rate, and breakdowns by department, job role, and age group',
+          caption: 'Overview page',
+          ratio: '16/9',
+          fit: 'contain',
+        },
+        {
+          src: '/images/projects/employee-attrition/deep-dive.png',
+          alt: 'Employee attrition Power BI dashboard, deep dive page — attrition rate by tenure group, business travel, and gender, attrition split by overtime status, and average monthly income by attrition',
+          caption: 'Deep dive page',
+          ratio: '16/9',
+          fit: 'contain',
+        },
+      ],
+    },
+  },
+  {
+    id: 'customer-support',
+    title: 'Customer Support Ticket Analytics Dashboard',
+    description:
+      'A Power BI dashboard covering 8,469 support tickets, built to surface where response and resolution performance was breaking down across the support operation — from first response speed to overall solve rate.',
+    tags: ['Power BI Desktop', 'DAX', 'Power Query', 'Dashboard Design'],
+    stats: [
+      { value: '8,469', label: 'Tickets analyzed' },
+      { value: '7h 45m', label: 'Average handling time' },
+      { value: '66.7%', label: 'First response rate', tone: 'good' },
+      { value: '32.7%', label: 'Solved rate', tone: 'warn' },
+    ],
+    visual: {
+      layout: 'single',
+      images: [
+        {
+          src: '/images/projects/customer-support/dashboard.png',
+          alt: 'Customer support ticket analytics Power BI dashboard — handling time, first response rate, ticket volume by type, priority, and day of week',
+          ratio: '16/9',
+          fit: 'contain',
+        },
+      ],
+    },
+  },
+];
+
+const filterTags = [...new Set(projects.flatMap((p) => p.tags))];
 ---
 
 <section id="projects">
@@ -12,133 +104,93 @@ import StatTile from './StatTile.astro';
       Power BI dashboards built to answer specific operational questions.
     </p>
 
-    <!-- Flagship: Predictive Maintenance -->
-    <article class="card project-card project-featured">
-      <div class="project-copy">
-        <span class="tag project-kicker">Flagship — MSc Dissertation</span>
-        <h3>Predictive Maintenance for Critical Power Infrastructure</h3>
-        <p>
-          Built and compared eight machine learning algorithms — including
-          LightGBM — to predict equipment failure for a UK critical power
-          infrastructure company, using ten years of operational history
-          (3.9M+ records) with no new sensor hardware required. The goal:
-          give maintenance teams enough lead time to act before failure, using
-          data they already had.
-        </p>
+    <div class="project-filters" role="group" aria-label="Filter projects by tool">
+      <button type="button" class="tag filter-pill is-active" data-filter="all">All</button>
+      {filterTags.map((tag) => (
+        <button type="button" class="tag filter-pill" data-filter={tag}>{tag}</button>
+      ))}
+    </div>
 
-        <div class="tag-row">
-          {['Python', 'LightGBM', 'XGBoost', 'scikit-learn', 'Feature Engineering', 'Time-Series Data'].map((t) => (
-            <span class="tag">{t}</span>
-          ))}
-        </div>
+    <div class="project-grid">
+      {projects.map((project) => (
+        <article
+          class:list={['card', 'project-card', { 'project-featured': project.featured }]}
+          data-tags={project.tags.join(',')}
+        >
+          <div class="project-copy">
+            {project.kicker && <span class="tag project-kicker">{project.kicker}</span>}
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
 
-        <div class="stat-row">
-          <StatTile value="8" label="ML algorithms compared" />
-          <StatTile value="3.9M+" label="Operational records" tone="good" />
-          <StatTile value="10 yrs" label="Of historical data" />
-          <StatTile value="0" label="New sensors required" tone="good" />
-        </div>
+            <div class="tag-row">
+              {project.tags.map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
 
-        <p class="result-line">
-          <strong>Result:</strong> LightGBM hit 91.2% test accuracy and 0.97 ROC AUC — the best of all 8 models compared.
-        </p>
+            <div class="stat-row">
+              {project.stats.map((stat) => (
+                <StatTile value={stat.value} label={stat.label} tone={stat.tone} />
+              ))}
+            </div>
 
-        <a class="btn btn-primary" href="/projects/predictive-maintenance/">
-          Read the full case study →
-        </a>
-      </div>
+            {project.resultLine && (
+              <p class="result-line">
+                <strong>Result:</strong> {project.resultLine}
+              </p>
+            )}
 
-      <div class="project-visual">
-        <ImageSlot
-          src="/images/projects/predictive-maintenance/hero-chart.png"
-          alt="LightGBM feature importance chart from the predictive maintenance dissertation"
-          ratio="4/3"
-          fit="contain"
-        />
-      </div>
-    </article>
+            {project.caseStudyHref && (
+              <a class="btn btn-primary" href={project.caseStudyHref}>
+                Read the full case study →
+              </a>
+            )}
+          </div>
 
-    <!-- Employee Attrition -->
-    <article class="card project-card">
-      <div class="project-copy">
-        <h3>Employee Attrition Analysis Dashboard</h3>
-        <p>
-          An interactive Power BI dashboard analyzing workforce attrition
-          across 1,470 employees, built to help HR identify which segments of
-          the workforce are actually at risk — and why — rather than reacting
-          to attrition after it happens.
-        </p>
+          <div class:list={['project-visual', { 'project-visual-pair': project.visual.layout === 'pair' }]}>
+            {project.visual.images.map((img) => (
+              <ImageSlot
+                src={img.src}
+                alt={img.alt}
+                caption={img.caption}
+                ratio={img.ratio}
+                fit={img.fit}
+              />
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
 
-        <div class="tag-row">
-          {['Power BI Desktop', 'DAX', 'Data Modeling', 'Dashboard Design'].map((t) => (
-            <span class="tag">{t}</span>
-          ))}
-        </div>
-
-        <div class="stat-row stat-row-4">
-          <StatTile value="1,470" label="Employees analyzed" />
-          <StatTile value="16.1%" label="Overall attrition rate" tone="warn" />
-          <StatTile value="~3x" label="Overtime workers' relative attrition" tone="warn" />
-          <StatTile value="Early tenure" label="Segment with highest attrition risk" tone="warn" />
-        </div>
-      </div>
-
-      <div class="project-visual project-visual-pair">
-        <ImageSlot
-          src="/images/projects/employee-attrition/overview.png"
-          alt="Employee attrition Power BI dashboard, overview page — total employees, attrition rate, and breakdowns by department, job role, and age group"
-          caption="Overview page"
-          ratio="16/9"
-          fit="contain"
-        />
-        <ImageSlot
-          src="/images/projects/employee-attrition/deep-dive.png"
-          alt="Employee attrition Power BI dashboard, deep dive page — attrition rate by tenure group, business travel, and gender, attrition split by overtime status, and average monthly income by attrition"
-          caption="Deep dive page"
-          ratio="16/9"
-          fit="contain"
-        />
-      </div>
-    </article>
-
-    <!-- Customer Support Ticket Analytics -->
-    <article class="card project-card">
-      <div class="project-copy">
-        <h3>Customer Support Ticket Analytics Dashboard</h3>
-        <p>
-          A Power BI dashboard covering 8,469 support tickets, built to
-          surface where response and resolution performance was breaking
-          down across the support operation — from first response speed to
-          overall solve rate.
-        </p>
-
-        <div class="tag-row">
-          {['Power BI Desktop', 'DAX', 'Power Query', 'Dashboard Design'].map((t) => (
-            <span class="tag">{t}</span>
-          ))}
-        </div>
-
-        <div class="stat-row stat-row-4">
-          <StatTile value="8,469" label="Tickets analyzed" />
-          <StatTile value="7h 45m" label="Average handling time" />
-          <StatTile value="66.7%" label="First response rate" tone="good" />
-          <StatTile value="32.7%" label="Solved rate" tone="warn" />
-        </div>
-      </div>
-
-      <div class="project-visual">
-        <ImageSlot
-          src="/images/projects/customer-support/dashboard.png"
-          alt="Customer support ticket analytics Power BI dashboard — handling time, first response rate, ticket volume by type, priority, and day of week"
-          ratio="16/9"
-          fit="contain"
-        />
-      </div>
-    </article>
+    <p class="project-empty" hidden>No projects match this filter yet.</p>
   </div>
 </section>
 
 <style>
+  .project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .filter-pill {
+    cursor: pointer;
+    font-family: var(--font-mono);
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .filter-pill:hover {
+    border-color: var(--border-strong);
+    color: var(--ink);
+  }
+
+  .filter-pill.is-active {
+    color: var(--accent);
+    border-color: rgba(57, 135, 229, 0.4);
+    background: var(--accent-soft);
+  }
+
   .project-card {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -150,6 +202,10 @@ import StatTile from './StatTile.astro';
 
   .project-card:last-child {
     margin-bottom: 0;
+  }
+
+  .project-card[hidden] {
+    display: none;
   }
 
   .project-featured {
@@ -203,6 +259,16 @@ import StatTile from './StatTile.astro';
     gap: 14px;
   }
 
+  .project-empty {
+    color: var(--ink-muted);
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  .project-empty:not([hidden]) {
+    display: block;
+  }
+
   @media (max-width: 980px) {
     .project-card {
       grid-template-columns: 1fr;
@@ -224,3 +290,39 @@ import StatTile from './StatTile.astro';
     }
   }
 </style>
+
+<script>
+  function initProjectFilters() {
+    const filterBar = document.querySelector('.project-filters');
+    if (!filterBar) return;
+
+    const pills = Array.from(filterBar.querySelectorAll<HTMLButtonElement>('.filter-pill'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.project-card'));
+    const emptyState = document.querySelector<HTMLElement>('.project-empty');
+
+    filterBar.addEventListener('click', (e) => {
+      const pill = (e.target as HTMLElement).closest<HTMLButtonElement>('.filter-pill');
+      if (!pill) return;
+
+      pills.forEach((p) => p.classList.toggle('is-active', p === pill));
+
+      const filter = pill.dataset.filter;
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const tags = (card.dataset.tags ?? '').split(',');
+        const matches = filter === 'all' || tags.includes(filter ?? '');
+        card.hidden = !matches;
+        if (matches) visibleCount += 1;
+      });
+
+      if (emptyState) emptyState.hidden = visibleCount > 0;
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectFilters);
+  } else {
+    initProjectFilters();
+  }
+</script>
