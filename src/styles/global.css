@@ -1,18 +1,20 @@
 /* ---------------------------------------------------------------
    Design tokens — dark, data-forward theme.
-   Values are the validated dark-mode steps from the studio palette
-   (contrast-checked against the #0d0d0d / #1a1a19 surfaces below).
+   Page/surface/ink values are retuned to the "Fewer" theme's dark
+   style variation (bg #1a1a1a / fg #dbdbdb / secondary #a2a2a2 /
+   surface #282828); accent/good/warn stay as this site's own colors
+   since Fewer's dark mode has no equivalent accent.
 ----------------------------------------------------------------- */
 :root {
   color-scheme: dark;
 
-  --page: #0d0d0d;
-  --surface: #1a1a19;
-  --surface-raised: #202020;
+  --page: #1a1a1a;
+  --surface: #282828;
+  --surface-raised: #313131;
 
-  --ink: #ffffff;
-  --ink-secondary: #c3c2b7;
-  --ink-muted: #898781;
+  --ink: #dbdbdb;
+  --ink-secondary: #a2a2a2;
+  --ink-muted: #8e8e8e;
 
   --border: rgba(255, 255, 255, 0.1);
   --border-strong: rgba(255, 255, 255, 0.18);
@@ -27,8 +29,8 @@
   --warn: #d95926;         /* orange — risk / attention metrics */
   --warn-soft: rgba(217, 89, 38, 0.14);
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
-    Helvetica, Arial, sans-serif;
+  --font-sans: "Epilogue", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Inter, Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono",
     Menlo, monospace;
 
@@ -51,6 +53,7 @@ body {
   background: var(--page);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   background-image: radial-gradient(
@@ -76,9 +79,13 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 650;
+  font-weight: 300;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.3;
+}
+
+h1 {
+  font-weight: 500;
 }
 
 p {

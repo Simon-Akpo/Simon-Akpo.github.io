@@ -30,11 +30,18 @@ const ogImageURL = new URL(image, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300;0,500;1,300;1,500&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content="Simon Akporowhe" />
-    <meta name="theme-color" content="#0d0d0d" />
+    <meta name="theme-color" content="#1a1a1a" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
