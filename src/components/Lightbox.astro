@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px;
+    padding: 24px;
     background: rgba(0, 0, 0, 0.85);
     animation: lightbox-fade-in 0.15s ease;
   }
@@ -26,8 +26,8 @@
   }
 
   .lightbox-img {
-    max-width: 90vw;
-    max-height: 85vh;
+    max-width: 96vw;
+    max-height: 92vh;
     width: auto;
     height: auto;
     object-fit: contain;
@@ -51,6 +51,7 @@
     border: 1px solid var(--border-strong);
     border-radius: 50%;
     cursor: pointer;
+    z-index: 1;
   }
 
   .lightbox-close:hover {
@@ -77,7 +78,7 @@
 
   @media (max-width: 640px) {
     .lightbox-overlay {
-      padding: 24px;
+      padding: 12px;
     }
   }
 </style>
